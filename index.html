@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recode your biology with NEXUS-9 cybernetic augmentations. Connect your neural system, upgrade ocular specs, and achieve synthetic evolution.">
+    <title>NEXUS-9 // Cybernetic Augmentation Portal</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Share+Tech+Mono&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="cyber-theme">
+    <!-- Custom Mouse HUD Cursor -->
+    <div class="hud-cursor" id="hudCursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+        <div class="cursor-specs">
+            <span class="spec-x">X: 000</span>
+            <span class="spec-y">Y: 000</span>
+        </div>
+    </div>
+
+    <!-- Tech Grid Background & Matrix Grid -->
+    <div class="tech-grid"></div>
+    <div class="scanlines"></div>
+    <div class="cyber-particles" id="particles"></div>
+
+    <!-- Audio Element for Micro-interactions (Web Audio API fallback in JS) -->
+    <audio id="clickSound" preload="auto" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA=="></audio>
+
+    <!-- Header & Navigation -->
+    <header class="cyber-header" id="mainHeader">
+        <div class="header-container">
+            <a href="#" class="logo" id="logoLink">
+                <span class="logo-accent">//</span> NEXUS-9 <span class="logo-sub">OS_v4.89</span>
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a href="#hero" class="nav-link active" id="navHero">OVERVIEW</a>
+                <a href="#features" class="nav-link" id="navFeatures">SPECIFICATIONS</a>
+                <a href="#lab" class="nav-link" id="navLab">AUGMENTATION LAB</a>
+                <a href="#diagnostics" class="nav-link" id="navDiagnostics">SYSTEM HUD</a>
+                <a href="#portal" class="nav-link" id="navPortal">ACCESS PORTAL</a>
+            </nav>
+
+            <div class="system-status">
+                <div class="status-indicator online"></div>
+                <span class="status-text" id="statusText">LINK // SECURE</span>
+            </div>
+
+            <button class="mobile-nav-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="section-container hero-container">
+            <div class="hero-content">
+                <div class="tagline">
+                    <span class="tag-pulse"></span>
+                    <span class="tag-text">EVOLUTION PROTOCOL // ON</span>
+                </div>
+                <h1 class="glitch-title" data-text="RECODE YOUR BIOLOGY" id="heroTitle">RECODE YOUR BIOLOGY</h1>
+                <p class="hero-desc" id="heroDesc">
+                    Step beyond natural limitations. Upgrade your sensory, neural, and physical components with the industry-standard NEXUS-9 cybernetic enhancements. Achieve synthetic synergy today.
+                </p>
+
+                <!-- Simulated Command Terminal -->
+                <div class="terminal-block">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">NEXUS-9_INIT.SYS</span>
+                    </div>
+                    <div class="terminal-body" id="heroTerminal">
+                        <p class="term-line"><span class="term-prompt">nexus-9:~$</span> <span class="typing-text">run core_sync_protocol.sh</span></p>
+                        <p class="term-line output secondary"><span class="term-success">[OK]</span> CORONAL IMPLANT v9.2: ACTIVE</p>
+                        <p class="term-line output secondary"><span class="term-success">[OK]</span> OCULAR MATRIX: SYNCHRONIZED [60FPS]</p>
+                        <p class="term-line output warning"><span class="term-warn">[WARN]</span> REGENERATOR FLUID LEVEL: 74%</p>
+                        <p class="term-line cursor-line"><span class="term-prompt">nexus-9:~$</span> <span class="term-cursor">_</span></p>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#portal" class="cyber-btn primary-btn" id="heroCtaPrimary">
+                        <span class="btn-glitch-layer"></span>
+                        <span class="btn-text">ACTIVATE PROTOCOL</span>
+                        <span class="btn-border"></span>
+                    </a>
+                    <a href="#lab" class="cyber-btn secondary-btn" id="heroCtaSecondary">
+                        <span class="btn-text">ENTER CORE LAB</span>
+                        <span class="btn-border"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="avatar-frame">
+                    <div class="glow-corners">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="hud-circle-outer"></div>
+                    <div class="hud-circle-inner"></div>
+                    <div class="image-scanner"></div>
+                    <img src="assets/cyborg_hero.png" alt="Cyborg portrait showing glowing cyan cybernetic implants" class="cyborg-avatar" id="heroImg">
+                    <!-- HUD Overlays on Hero Image -->
+                    <div class="hud-overlay-tag top-left">SYS_SYNC: 99.8%</div>
+                    <div class="hud-overlay-tag top-right">OCULAR // ACC_01</div>
+                    <div class="hud-overlay-tag bottom-left">CHASSIS: TITANIUM-9</div>
+                    <div class="hud-overlay-tag bottom-right">WAVELENGTH: 430NM</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Specifications / Features -->
+    <section class="features-section" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-sub">// UPGRADE MATRIX</span>
+                <h2 class="section-title">CORE AUGMENTATIONS</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature 1: Neural Link -->
+                <div class="feature-card" id="featNeural">
+                    <div class="card-glow"></div>
+                    <div class="card-scanner"></div>
+                    <div class="card-icon-wrapper">
+                        <svg class="card-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">MODULE_01 // COGNITIVE</div>
+                    <h3 class="card-title">NEURAL IMPLANT v9.4</h3>
+                    <p class="card-desc">Direct cortical interface with 10 Gbps wireless throughput. Eliminates semantic delay, boosts mental processing speed by 400%, and facilitates direct link with AI models.</p>
+                    <ul class="card-specs">
+                        <li><span>BANDWIDTH</span> <span>10 Gbps</span></li>
+                        <li><span>LATENCY</span> <span>&lt; 0.1 ms</span></li>
+                        <li><span>ENCRYPTION</span> <span>Quantum-Key</span></li>
+                    </ul>
+                    <div class="card-footer">
+                        <span class="card-status status-active">INTEGRITY OK</span>
+                        <a href="#lab" class="card-action">SELECT MODULE</a>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Ocular Matrix -->
+                <div class="feature-card" id="featOcular">
+                    <div class="card-glow"></div>
+                    <div class="card-scanner"></div>
+                    <div class="card-icon-wrapper">
+                        <svg class="card-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">MODULE_02 // SENSORY</div>
+                    <h3 class="card-title">AUGMENTED OCULAR HUD</h3>
+                    <p class="card-desc">Retinal overlay with multi-spectrum mapping, heat mapping, spatial measurement overlays, and high-frequency digital zoom. Protects eyes from flashes and radiation.</p>
+                    <ul class="card-specs">
+                        <li><span>ZOOM RATIO</span> <span>50x Optical</span></li>
+                        <li><span>SPECTRUM</span> <span>IR / UV / X-Ray</span></li>
+                        <li><span>HZ RESOLUTION</span> <span>240Hz Virtual</span></li>
+                    </ul>
+                    <div class="card-footer">
+                        <span class="card-status status-active">ONLINE [240HZ]</span>
+                        <a href="#lab" class="card-action">SELECT MODULE</a>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Nanite Core -->
+                <div class="feature-card" id="featNanite">
+                    <div class="card-glow"></div>
+                    <div class="card-scanner"></div>
+                    <div class="card-icon-wrapper">
+                        <svg class="card-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">MODULE_03 // SOMATIC</div>
+                    <h3 class="card-title">NANITE REPAIR GRID</h3>
+                    <p class="card-desc">Autonomous cellular repair grid. Active nanites continuously monitor systemic health, patch tissue damage, neutralize poisons, and accelerate cellular recovery times.</p>
+                    <ul class="card-specs">
+                        <li><span>CELL REGEN</span> <span>+800% Rate</span></li>
+                        <li><span>NANITE COUNT</span> <span>450 Billion</span></li>
+                        <li><span>RECHARGE TIME</span> <span>4h Induction</span></li>
+                    </ul>
+                    <div class="card-footer">
+                        <span class="card-status status-warning">FLUID: 74%</span>
+                        <a href="#lab" class="card-action">SELECT MODULE</a>
+                    </div>
+                </div>
+
+                <!-- Feature 4: Quantum Core -->
+                <div class="feature-card" id="featQuantum">
+                    <div class="card-glow"></div>
+                    <div class="card-scanner"></div>
+                    <div class="card-icon-wrapper">
+                        <svg class="card-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        </svg>
+                    </div>
+                    <div class="card-meta">MODULE_04 // REGENERATIVE</div>
+                    <h3 class="card-title">QUANTUM SYNAPSE CORE</h3>
+                    <p class="card-desc">Harness parallel quantum state calculation within your brain. Allows you to make multi-variable decisions in split seconds and forecast tactical outcomes instantly.</p>
+                    <ul class="card-specs">
+                        <li><span>COMPUTE STATE</span> <span>1024 Qubits</span></li>
+                        <li><span>DECISION TIME</span> <span>&lt; 5 Microsec</span></li>
+                        <li><span>TEMP COOLING</span> <span>Liquid Nitrogen</span></li>
+                    </ul>
+                    <div class="card-footer">
+                        <span class="card-status status-active">TEMP: 2.1K</span>
+                        <a href="#lab" class="card-action">SELECT MODULE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Augmentation Customizer (Augmentation Lab) -->
+    <section class="lab-section" id="lab">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-sub">// BIO-INTERFACE TECH</span>
+                <h2 class="section-title">AUGMENTATION LAB</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="lab-workspace">
+                <!-- Left panel: interactive blueprint SVG -->
+                <div class="lab-blueprint">
+                    <div class="blueprint-overlay">
+                        <span class="bp-grid-label">GRID_X99_ALPHA</span>
+                        <span class="bp-grid-status">SCANNING TARGET...</span>
+                    </div>
+
+                    <!-- Cyborg Blueprint SVG -->
+                    <svg id="cyborgBlueprint" class="blueprint-svg" viewBox="0 0 400 500" width="100%" height="100%">
+                        <!-- Sci-Fi grids and HUD elements -->
+                        <circle cx="200" cy="250" r="180" fill="none" stroke="var(--cyan-border)" stroke-width="1" stroke-dasharray="5,5" opacity="0.3"></circle>
+                        <circle cx="200" cy="250" r="120" fill="none" stroke="var(--purple-neon)" stroke-width="0.5" stroke-dasharray="20,10" opacity="0.2"></circle>
+                        
+                        <!-- HUD Target Cross -->
+                        <line x1="20" y1="250" x2="380" y2="250" stroke="var(--cyan-neon)" stroke-width="0.5" opacity="0.15"></line>
+                        <line x1="200" y1="20" x2="200" y2="480" stroke="var(--cyan-neon)" stroke-width="0.5" opacity="0.15"></line>
+
+                        <!-- Stylized Cyborg Abstract SVG Wireframe -->
+                        <!-- Head -->
+                        <path class="bp-part cranial-node" id="node-cranial" d="M175,70 C175,40 225,40 225,70 L220,100 L180,100 Z" fill="rgba(0, 240, 255, 0.05)" stroke="var(--cyan-neon)" stroke-width="1.5"></path>
+                        <!-- Ocular Area -->
+                        <path class="bp-part ocular-node" id="node-ocular" d="M190,75 L210,75 L208,82 L192,82 Z" fill="rgba(255, 0, 85, 0.1)" stroke="var(--crimson-neon)" stroke-width="1.5"></path>
+                        <!-- Spine & Core -->
+                        <rect class="bp-part core-node" id="node-core" x="185" y="110" width="30" height="150" rx="5" fill="rgba(189, 0, 255, 0.05)" stroke="var(--purple-neon)" stroke-width="1.5"></rect>
+                        <circle class="bp-part core-heart-node" id="node-core-glow" cx="200" cy="160" r="12" fill="rgba(0, 240, 255, 0.2)" stroke="var(--cyan-neon)" stroke-width="1"></circle>
+                        <!-- Arm Left -->
+                        <path class="bp-part limb-node" id="node-left-arm" d="M175,120 L130,140 L110,210 L125,215 L140,160 L175,140 Z" fill="rgba(0, 240, 255, 0.05)" stroke="var(--cyan-border)" stroke-width="1"></path>
+                        <!-- Arm Right -->
+                        <path class="bp-part limb-node" id="node-right-arm" d="M225,120 L270,140 L290,210 L275,215 L260,160 L225,140 Z" fill="rgba(0, 240, 255, 0.05)" stroke="var(--cyan-border)" stroke-width="1"></path>
+                        <!-- Leg Left -->
+                        <path class="bp-part limb-node" id="node-left-leg" d="M185,270 L165,370 L150,450 L170,450 L185,380 L195,270 Z" fill="rgba(0, 240, 255, 0.05)" stroke="var(--cyan-border)" stroke-width="1"></path>
+                        <!-- Leg Right -->
+                        <path class="bp-part limb-node" id="node-right-leg" d="M215,270 L235,370 L250,450 L230,450 L215,380 L205,270 Z" fill="rgba(0, 240, 255, 0.05)" stroke="var(--cyan-border)" stroke-width="1"></path>
+
+                        <!-- Connector Lines with pulsing dots -->
+                        <!-- Cranial Connector -->
+                        <path d="M200,50 L310,50 L330,70" fill="none" stroke="var(--cyan-neon)" stroke-width="0.75" stroke-dasharray="3,3"></path>
+                        <circle cx="330" cy="70" r="3" fill="var(--cyan-neon)"></circle>
+                        <!-- Ocular Connector -->
+                        <path d="M200,80 L70,80 L50,110" fill="none" stroke="var(--crimson-neon)" stroke-width="0.75" stroke-dasharray="3,3"></path>
+                        <circle cx="50" cy="110" r="3" fill="var(--crimson-neon)"></circle>
+                        <!-- Core Connector -->
+                        <path d="M200,160 L310,160 L320,190" fill="none" stroke="var(--purple-neon)" stroke-width="0.75" stroke-dasharray="3,3"></path>
+                        <circle cx="320" cy="190" r="3" fill="var(--purple-neon)"></circle>
+                        <!-- Limbs Connector -->
+                        <path d="M130,170 L70,170 L50,200" fill="none" stroke="var(--cyan-border)" stroke-width="0.75" stroke-dasharray="3,3"></path>
+                        <circle cx="50" cy="200" r="3" fill="var(--cyan-border)"></circle>
+
+                        <!-- SVG Text labels -->
+                        <text x="340" y="74" fill="var(--cyan-neon)" font-family="Share Tech Mono" font-size="10">CRANIAL_LINK</text>
+                        <text x="15" y="114" fill="var(--crimson-neon)" font-family="Share Tech Mono" font-size="10">OCULAR_HUD</text>
+                        <text x="330" y="194" fill="var(--purple-neon)" font-family="Share Tech Mono" font-size="10">SYS_CORE</text>
+                        <text x="15" y="204" fill="var(--cyan-border)" font-family="Share Tech Mono" font-size="10">MOTOR_SERVO</text>
+                    </svg>
+
+                    <!-- Blueprint HUD Interactive Triggers Overlay -->
+                    <div class="bp-trigger-btn cranial-btn" data-node="cranial">CRANIAL SYSTEM</div>
+                    <div class="bp-trigger-btn ocular-btn" data-node="ocular">OCULAR MATRIX</div>
+                    <div class="bp-trigger-btn core-btn" data-node="core">CORE REACTOR</div>
+                    <div class="bp-trigger-btn limbs-btn" data-node="limbs">SERVO LIMBS</div>
+                </div>
+
+                <!-- Right panel: Customizer controls -->
+                <div class="lab-controls">
+                    <div class="control-header">
+                        <span class="control-meta" id="labNodeId">NODE // CRANIAL_v9.2</span>
+                        <h3 class="control-title" id="labNodeName">Neural Cranial Implants</h3>
+                    </div>
+
+                    <div class="control-body">
+                        <p class="control-desc" id="labNodeDesc">
+                            Connect your biological consciousness directly to the neural grid. Install neuro-receptors to expand memory buffers, compute bandwidth, and establish seamless machine communication.
+                        </p>
+
+                        <!-- Module upgrade option toggles -->
+                        <div class="upgrade-options">
+                            <span class="options-title">INTEGRATION OPTIONS</span>
+                            
+                            <div class="upgrade-option-card active" data-mod="0">
+                                <div class="opt-indicator"></div>
+                                <div class="opt-details">
+                                    <div class="opt-name">Synaptic Shunt v4</div>
+                                    <div class="opt-specs">Bandwidth: +2 Gbps // Synapse Load: +10%</div>
+                                </div>
+                                <div class="opt-cost">15,000 CR</div>
+                            </div>
+
+                            <div class="upgrade-option-card" data-mod="1">
+                                <div class="opt-indicator"></div>
+                                <div class="opt-details">
+                                    <div class="opt-name">Hyper-Cortical Accelerator</div>
+                                    <div class="opt-specs">Bandwidth: +10 Gbps // Synapse Load: +35%</div>
+                                </div>
+                                <div class="opt-cost">42,000 CR</div>
+                            </div>
+
+                            <div class="upgrade-option-card" data-mod="2">
+                                <div class="opt-indicator"></div>
+                                <div class="opt-details">
+                                    <div class="opt-name">Quantum Coprocessor</div>
+                                    <div class="opt-specs">Bandwidth: +100 Gbps // Synapse Load: +75%</div>
+                                </div>
+                                <div class="opt-cost">120,000 CR</div>
+                            </div>
+                        </div>
+
+                        <!-- System diagnostics bars -->
+                        <div class="lab-diagnostics">
+                            <span class="diagnostics-title">PROJECTED TELEMETRY IMPACT</span>
+                            
+                            <div class="diagnostic-bar-wrapper">
+                                <div class="bar-labels">
+                                    <span>SYSTEM INTEGRITY</span>
+                                    <span id="meterIntegrityText">98%</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" id="meterIntegrity" style="width: 98%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="diagnostic-bar-wrapper">
+                                <div class="bar-labels">
+                                    <span>SYNAPTIC LOAD</span>
+                                    <span id="meterLoadText">15%</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill warning" id="meterLoad" style="width: 15%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="diagnostic-bar-wrapper">
+                                <div class="bar-labels">
+                                    <span>SYNCHRONIZATION SPEED</span>
+                                    <span id="meterSpeedText">95.4 Gbps</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill dynamic" id="meterSpeed" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Build/Install Action Button -->
+                        <button class="cyber-btn primary-btn install-btn" id="installModuleBtn">
+                            <span class="btn-text">INJECT AUGMENTATION MODULE</span>
+                            <span class="btn-border"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diagnostics / Real-time System HUD -->
+    <section class="diagnostics-section" id="diagnostics">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-sub">// TELEMETRY FEED</span>
+                <h2 class="section-title">SYSTEM DIAGNOSTICS HUD</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="diagnostics-dashboard">
+                <!-- Core CPU / Sync meters -->
+                <div class="diag-widget" id="diagCoreSys">
+                    <div class="widget-header">
+                        <span class="widget-indicator"></span>
+                        <h3 class="widget-title">BIOMECHANICAL CORES</h3>
+                    </div>
+                    <div class="widget-content flex-row">
+                        <!-- Simulated circular progress -->
+                        <div class="circle-telemetry">
+                            <div class="circle-svg-wrapper">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="circle-bg"></circle>
+                                    <circle cx="50" cy="50" r="40" class="circle-value" id="circleCpu"></circle>
+                                </svg>
+                                <div class="circle-text">
+                                    <span class="val" id="textCpu">42%</span>
+                                    <span class="lbl">CPU LOAD</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="circle-telemetry">
+                            <div class="circle-svg-wrapper">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="40" class="circle-bg"></circle>
+                                    <circle cx="50" cy="50" r="40" class="circle-value warning" id="circleTemp"></circle>
+                                </svg>
+                                <div class="circle-text">
+                                    <span class="val" id="textTemp">36.8°C</span>
+                                    <span class="lbl">CORE TEMP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network and Sync Diagnostics -->
+                <div class="diag-widget" id="diagNetwork">
+                    <div class="widget-header">
+                        <span class="widget-indicator"></span>
+                        <h3 class="widget-title">SIGNAL SYNCHRONIZATION</h3>
+                    </div>
+                    <div class="widget-content spec-table-wrapper">
+                        <table class="hud-table">
+                            <thead>
+                                <tr>
+                                    <th>INTERFACE CHANNEL</th>
+                                    <th>STATUS</th>
+                                    <th>RATE</th>
+                                    <th>LATENCY</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CORTICAL_LINK_A</td>
+                                    <td><span class="tag-success">ONLINE</span></td>
+                                    <td id="corticalRate">980 Mbps</td>
+                                    <td id="corticalLat">0.05 ms</td>
+                                </tr>
+                                <tr>
+                                    <td>OCULAR_LINK_B</td>
+                                    <td><span class="tag-success">ONLINE</span></td>
+                                    <td>40 Gbps</td>
+                                    <td>0.12 ms</td>
+                                </tr>
+                                <tr>
+                                    <td>NANITE_COMMS_C</td>
+                                    <td><span class="tag-warning">CELL_RESET</span></td>
+                                    <td>124 Mbps</td>
+                                    <td>2.45 ms</td>
+                                </tr>
+                                <tr>
+                                    <td>MOTOR_SERVO_D</td>
+                                    <td><span class="tag-success">ONLINE</span></td>
+                                    <td>1.2 Gbps</td>
+                                    <td>0.08 ms</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Live Command Log Stream -->
+                <div class="diag-widget widget-terminal" id="diagTerminalWidget">
+                    <div class="widget-header">
+                        <span class="widget-indicator pulse"></span>
+                        <h3 class="widget-title">LIVE PROTOCOL DIAGNOSTICS</h3>
+                        <div class="terminal-stats">LOG_SYNC: ENCRYPTED</div>
+                    </div>
+                    <div class="terminal-body log-stream" id="hudSystemLog">
+                        <!-- Filled in via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign up / Access portal -->
+    <section class="portal-section" id="portal">
+        <div class="section-container portal-container">
+            <div class="portal-branding">
+                <span class="branding-sub">// PROTOCOL CODE: NEXUS-9</span>
+                <h2 class="branding-title">JOIN THE EVOLUTION</h2>
+                <p class="branding-text">
+                    Establish authorization criteria for biological integration. Submit details to schedule a diagnostics scan and request a customized cybernetic blueprint alignment.
+                </p>
+                <div class="branding-security-notice">
+                    <div class="notice-icon">!</div>
+                    <div class="notice-text">
+                        WARNING: Neural synchronization requires complete mental alignment. Unsanctioned modules could lead to synaptic feedback loops.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portal signup Form -->
+            <div class="portal-form-wrapper">
+                <div class="form-header">
+                    <div class="term-status-block">
+                        <span class="term-tag">SECURITY SECURE: TLS_v1.3</span>
+                    </div>
+                    <h3>SYSTEM ACCESS PORTAL</h3>
+                </div>
+
+                <form class="portal-form" id="nexusPortalForm" action="#" method="POST">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="usrName" class="cyber-label">BIOLOGICAL ALIAS</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="usrName" name="usrName" class="cyber-input" placeholder="e.g. Neo-Corvux" required>
+                                <span class="input-glow"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="usrMail" class="cyber-label">NEURAL NET ADDRESS</label>
+                            <div class="input-wrapper">
+                                <input type="email" id="usrMail" name="usrMail" class="cyber-input" placeholder="e.g. corvux@nexus.net" required>
+                                <span class="input-glow"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="usrModel" class="cyber-label">TARGET CHASSIS PREFERENCE</label>
+                            <div class="input-wrapper select-wrapper">
+                                <select id="usrModel" name="usrModel" class="cyber-input" required>
+                                    <option value="" disabled selected>Select Model Class</option>
+                                    <option value="intellect">Neuro-Intellect (Cognitive focus)</option>
+                                    <option value="sensory">Apex-Sensory (Augmented vision & hearing)</option>
+                                    <option value="somatic">Titan-Somatic (Heavy combat & heavy servo)</option>
+                                    <option value="hybrid">Omni-Hybrid (Customized multi-spec)</option>
+                                </select>
+                                <span class="input-glow"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="usrNote" class="cyber-label">AUGMENTATION GOALS / BRAIN FREQUENCY</label>
+                        <div class="input-wrapper">
+                            <textarea id="usrNote" name="usrNote" rows="3" class="cyber-input textarea-input" placeholder="Describe desired enhancements or specify cognitive telemetry requirements..."></textarea>
+                            <span class="input-glow"></span>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="usrTerms" name="usrTerms" class="cyber-checkbox" required>
+                        <label for="usrTerms" class="checkbox-label">
+                            I accept the Nexus-9 integration terms, liability waiving on neural shunts, and biological override authorization protocols.
+                        </label>
+                    </div>
+
+                    <!-- Authorization Submit Button -->
+                    <button type="submit" class="cyber-btn primary-btn submit-btn" id="portalSubmitBtn">
+                        <span class="btn-glitch-layer"></span>
+                        <span class="btn-text">AUTHORIZE ENLISTMENT PROTOCOL</span>
+                        <span class="btn-border"></span>
+                    </button>
+                </form>
+
+                <!-- Status confirmation window (hidden initially) -->
+                <div class="portal-status-display" id="portalStatusBox" style="display: none;">
+                    <div class="status-terminal-header">
+                        <span>CONNECTION PROTOCOL ESTABLISHED</span>
+                    </div>
+                    <div class="status-terminal-body">
+                        <p class="term-line success-line">> ENCRYPTING ALIAS DATA...</p>
+                        <p class="term-line success-line">> WRITING PROTOCOL KEY TO CORTICAL BANK...</p>
+                        <p class="term-line success-line">> SYNAPSE ALIGNMENT SCHEDULED FOR SYSTEM CYCLE 7780.</p>
+                        <p class="term-line highlight-line">> STATUS: PENDING AUTHORIZATION SCAN. CONFIRMATION DELIVERED.</p>
+                        <button class="cyber-btn secondary-btn close-status-btn" id="closeStatusBtn">DISCONNECT SECURE LINK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="cyber-footer" id="mainFooter">
+        <div class="footer-grid">
+            <div class="footer-branding">
+                <span class="footer-logo">// NEXUS-9</span>
+                <p>Establishing the threshold of mechanical and biological fusion since corporate cycle 2088. REC_KEY_008-01.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>CHASSIS CLASS</h4>
+                <ul>
+                    <li><a href="#lab" data-link-node="cranial">Cranial Augments</a></li>
+                    <li><a href="#lab" data-link-node="ocular">Ocular Implants</a></li>
+                    <li><a href="#lab" data-link-node="core">Power Reactors</a></li>
+                    <li><a href="#lab" data-link-node="limbs">Servo Limbs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>DATA PORTS</h4>
+                <ul>
+                    <li><a href="#hero">Overview Feed</a></li>
+                    <li><a href="#features">Specifications</a></li>
+                    <li><a href="#diagnostics">Telemetry HUD</a></li>
+                    <li><a href="#portal">Join Registry</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>SYSTEM STATUS</h4>
+                <div class="footer-status-box">
+                    <span class="lbl">NETWORK SYNC STATUS:</span>
+                    <span class="val success-text">ACTIVE [99.98%]</span>
+                    <span class="lbl mt-10">CORE SECURITY SYSTEM:</span>
+                    <span class="val warning-text">ENCRYPTED SHIELD ON</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 NEXUS-9 BIOLOGICAL SYSTEMS INC. ALL RIGHTS REGISTERED UNDER NEURAL PATENT CODEX 0x90432. SUBJECT TO CORTICAL TERMS.</p>
+            <div class="footer-term-specs">SECURE LINK CERTIFIED // RSA_4096</div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
